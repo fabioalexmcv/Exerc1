@@ -1,0 +1,50 @@
+#include<stdio.h> 
+#include<string.h> 
+#include<locale.h>
+#include<windows.h>
+
+void gotoxy(int x, int y)
+{
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),(COORD){x,y});
+}
+
+void mensagem1(){
+	printf("São anagramas!");
+}
+
+void mensagem2(){
+	printf("Não são anagramas!");
+}
+
+int main(){
+	setlocale(LC_ALL, "Portuguese");
+	 
+	int i=0, j=0, cont1=0, cont2=0, k=0, flag=0, *p1; 
+  	char palavra1[50],palavra2[50]; 
+   	printf("Digite a primeira palavra: "); 
+   	gets(palavra1); 
+   	cont1 = strlen(palavra1); 
+   	printf("Digite a segunda palavra: "); 
+   	gets(palavra2); 
+   	cont2 = strlen(palavra2);
+   	
+   	for(i=0; i<cont1 && flag == 0; i++) { 
+    	*p1=palavra1[i];
+    	j = 0; 
+      	while (j < cont2 && *p1 != palavra2[j]) 
+        	j++; 
+      	if (j < cont2) 
+        	palavra2[j] = '*'; 
+      	else 
+        	flag = 1; 
+   	} 
+   	if(flag == 0){
+    	gotoxy(31,4);
+		mensagem1();
+    }
+   	else{
+    	gotoxy(31,4);
+		mensagem2(); 
+	}
+   	return 0; 
+} 
